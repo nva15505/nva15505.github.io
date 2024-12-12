@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>爱情❀魔方</title>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="img1/img.jpg" />
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+		  width: 100%;
+		  height: 100%;
+		  background: radial-gradient(rgb(240, 110, 110), rgb(60, 172, 221)); 
+      background-image: url('../photo_wall/img/8.jpg');
+		}
+		@media screen and (min-width: 768px){
+			body{
+				background:radial-gradient(rgb(84, 164, 191),rgb(233, 196, 202));
+        background-image: url('../photo_wall/img/8.jpg');
+			}					
+		}
+		@media screen and (min-width: 992px){
+			body{
+				background:radial-gradient(rgb(143, 84, 191),rgb(225, 238, 109));
+        background-image: url('../photo_wall/img/8.jpg');
+			}					
+		}
+		@media screen and (min-width: 1200px){
+			body{
+        background-image: url('../photo_wall/img/8.jpg');
+			}					
+		}
+ 
+		.container{
+			width:300px;
+			height:300px;
+			margin:200px auto;
+			perspective:20000px;
+		}
+		.box{
+			width:300px;
+			height:300px;
+			border:1px solid transparent;
+			box-sizing: border-box;
+			position:relative;
+			transform-style:preserve-3d;
+			/*transform:rotateX(30deg) rotateY(30deg);*/
+			animation: rotate 10s linear infinite;
+		}
+		@keyframes rotate{
+			100%{
+				transform:rotatex(360deg) rotatey(360deg) rotatez(360deg);
+			}
+		}
+ 
+		.box-page{
+			width: 300px;
+			height: 300px;
+			position:absolute;
+			box-sizing: border-box;
+			transform-style:preserve-3d;
+		}
+ 
+ 
+		.top{
+			transform: translateZ(150px);
+		}
+		.bottom{
+			transform: translateZ(-150px) rotateX(180deg);
+		}
+		.right{
+			transform: translateX(150px) rotateY(90deg);
+		}
+		.left{
+			transform: translateX(-150px) rotateY(-90deg);
+		}
+		.after{
+			transform: translateY(-150px) rotateX(90deg);
+		}
+		.before{
+			transform: translateY(150px) rotateX(-90deg);
+		}
+ 
+ 
+		.box-page div:first-child,.box-page div:nth-child(3),.box-page div:nth-child(5),.box-page div:nth-child(7),.box-page div:nth-child(9){
+			transform: rotateY(0deg);
+		    animation: rotatey 6s linear infinite;
+		}
+ 
+ 
+		@keyframes rotatey{
+			20%{
+				transform: rotateY(0deg);
+				background-size: 300px 300px;
+			}
+			40%{
+				/*background-image: url("img/img.jpg");*/
+				transform: rotateY(540deg);
+				background-size: 100px 100px;
+			}
+			60%{
+				/*background-image: url("img/img.jpg");*/
+				transform: rotateY(540deg);
+				background-size: 100px 100px;
+			}
+			80%{
+				transform: rotateY(0deg);
+				background-size:300px 300px;
+			}
+		}
+ 
+		.box-page div:nth-child(2),.box-page div:nth-child(4),.box-page div:nth-child(6),.box-page div:nth-child(8){
+			transform:rotateX(0deg);
+		    animation: rotatex 6s linear infinite;
+		}
+ 
+		@keyframes rotatex{
+			20%{
+				transform: rotateX(0deg);
+				background-size: 300px 300px;
+			}
+			40%{
+				/*background-image: url("img/img.jpg");*/
+				transform: rotateX(540deg);
+				background-size: 100px 100px;
+			}
+			60%{
+				/*background-image: url("img/img.jpg");*/
+				transform: rotateX(540deg);
+				background-size: 100px 100px;
+			}
+			80%{
+				transform: rotateX(0deg);
+				background-size: 300px 300px;
+			}
+		}
+		
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="box">
+		<div class="top box-page"></div>
+		<div class="bottom box-page"></div>
+		<div class="left box-page"></div>
+		<div class="right box-page"></div>
+		<div class="before box-page"></div>
+		<div class="after box-page"></div>
+	</div>
+</div>
+<button id="nextPageButton" style="position: absolute; top: 20px; left: 20px; padding: 10px 20px; font-size: 16px; background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); cursor: pointer; transition: background-color 0.3s;">
+	进入下一页
+</button>
+<script type="text/javascript">
+	
+	var arr = document.querySelectorAll(".box>div");
+	for(var n = 0;n<arr.length;n++){
+		for(var i=0;i<3;i++){
+			for(var j=0;j<3;j++){
+				var divs = document.createElement("div");
+				divs.style.cssText = "width:100px;height:100px;border: 1px solid #fff;position:absolute;box-sizing:border-box;background-image:url(img/"+n+".jpg);background-size: 300px 300px;";
+				arr[n].appendChild(divs);
+ 
+				// 改变每一个div的位置
+				divs.style.left = 100*j+"px";
+				divs.style.top = 100*i+"px";
+ 
+				// 改变背景图相应的位置
+				divs.style.backgroundPositionX = -j*100+"px";
+				divs.style.backgroundPositionY = -i*100+"px";		
+			}
+		}
+	}
+	
+	// 跳到烟花页面
+	document.getElementById("nextPageButton").onclick = function() {
+		window.location.href = "http://127.0.0.1:5500/%E5%9F%BA%E7%A1%80/%E8%A1%A8%E7%99%BD/%E8%A1%A8%E7%99%BD%E4%BB%A3%E7%A0%81/%E8%A1%A8%E7%99%BD%E4%BB%A3%E7%A0%81/fireworks-simulator-master/index.html"; // 替换为实际的下一页链接
+	};
+	document.getElementById("nextPageButton").onmouseover = function() {
+		this.style.backgroundColor = "rgba(255, 255, 255, 1)";
+	};
+	document.getElementById("nextPageButton").onmouseout = function() {
+		this.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+	};
+ 
+ 
+</script>
+<audio src="../music/gaobaiqiqiu.m4a" controls="controls">
+	
+</audio>
+</body>
+</html>
